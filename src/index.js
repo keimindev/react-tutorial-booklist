@@ -1,17 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Books } from './Books';
+import Book from './Book';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+function BookList(){
+  return (
+  <section className="booklist">
+    {Books.map((book) => {
+      const {img, title, author, price} = book;
+      return (
+        <div>
+          <Book key={book.id} {...book}></Book>
+                              {/* book={book}인데, {...book}하면 book에 들어있는거 다 올린다는 이야기  */}
+        </div>
+      )
+    })
+  }
+  </section>
+  )
+}
+
+ReactDom.render(<BookList/>, document.getElementById('root'))
